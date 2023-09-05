@@ -61,3 +61,18 @@ class Solution {
 
     }
 }
+
+Better solin found in >
+public String mergeAlternately(String word1, String word2) {
+        int i =0,j=0;
+        char [] chars1 = word1.toCharArray();
+        char [] chars2 = word2.toCharArray();
+         StringBuffer sb = new StringBuffer();
+        while(i < chars1.length || j< chars2.length){
+            if(i<chars1.length)
+            sb.append(chars1[i++]);
+            if(j<chars2.length)
+            sb.append(chars2[j++]);
+        }
+        return new String(sb);
+    }

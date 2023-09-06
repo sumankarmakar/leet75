@@ -1,0 +1,52 @@
+Garlands and Flowers
+
+The problem provides you with two strings - garlands and flowers. The string garlands represent the types of flowers that are considered precious, while the string flowers contain the types of flowers you possess.
+
+Each character in the string flowers represents a type of flower you have, and you need to determine the number of flowers you have that are also considered garlands.
+
+It is important to note that the letters in garlands and flowers are case-sensitive. Meaning that a lowercase “a” is different from an uppercase “A”.
+
+Example 1:
+Input: garlands = “aA”, flowers =“aAAbbbb”
+Output: 3
+
+Example 2:
+Input: garlands = “z” , flowers =“ZZ”
+Output: 0
+
+Constraints:
+•	1 <= garlands.length , flowers.length <=50
+•	Garlands and flowers consist of only English letter
+•	All the characters of garlands are unique.
+
+
+
+public static int garlandsCountInflower1(String garlands, String flowers) {
+        int count = 0;
+        // Create a map of unique garlands in flowers
+        Map<String,Integer> garlandCountMap = new HashMap<String,Integer>();
+        for(int i =0 ; i < flowers.length(); i++){
+            char c = flowers.charAt(i);
+            //System.out.println(c);
+            //System.out.println(garlandCountMap.containsKey(""+c));
+            if(garlandCountMap.containsKey(String.valueOf(c))){
+                garlandCountMap.put( String.valueOf(c), garlandCountMap.get(String.valueOf(c)).intValue()+1);
+            }else{
+                garlandCountMap.put( String.valueOf(c), 1);
+            }
+        }
+        //System.out.println(garlandCountMap);
+        for (int j = 0 ; j < garlands.length() ; j++){
+            char c = garlands.charAt(j);
+            if(garlandCountMap.get(String.valueOf(c)) != null){
+                count = count + garlandCountMap.get(String.valueOf(c)).intValue();
+            }
+        }
+
+        return count;
+    }
+
+    public static void main(String args[]){
+        System.out.println(garlandsCountInflower1("aA","aAAbbbb"));
+        System.out.println(garlandsCountInflower1("z","ZZ"));
+    }
